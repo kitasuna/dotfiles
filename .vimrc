@@ -7,6 +7,10 @@ let mapleader=","
 nnoremap <leader>t :tabe %:p:h<CR>
 nnoremap <leader>n :NERDTreeToggle<CR>
 
+" Nicer window splitting
+nnoremap <C-w>\ <C-w>v
+nnoremap <C-w>= <C-w>s
+
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
