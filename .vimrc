@@ -12,30 +12,34 @@ call vundle#begin()
 
 Plugin 'gmarik/Vundle.vim'
 
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
+" Git stuff
 Plugin 'tpope/vim-fugitive'
 
+" Linter etc
 Plugin 'scrooloose/syntastic'
 
+" Inserting of blank lines from normal mode etc
 Plugin 'tpope/vim-unimpaired'
 
-Plugin 'godlygeek/csapprox'
-
-" Plugin 'bpearson/vim-phpcs'
-
+" File tray
 Plugin 'scrooloose/nerdtree'
 
-Plugin 'mhinz/vim-startify'
-
+" Wrapping words in quotes, tags, etc
 Plugin 'tpope/vim-surround.git'
 
-Plugin 'pangloss/vim-javascript'
-
+" Auto closing of quotes and parents
 Plugin 'cohama/lexima.vim'
 
 Plugin 'NLKNguyen/papercolor-theme'
+
+" Plugin 'pangloss/vim-javascript'
+
+" Plugin 'mhinz/vim-startify'
+
+" Plugin 'godlygeek/csapprox'
+
+" Plugin 'bpearson/vim-phpcs'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on
