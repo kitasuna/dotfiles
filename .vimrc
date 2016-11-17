@@ -1,5 +1,8 @@
 set nocompatible              " be iMproved, required
+" Line number fun
 set number
+set relativenumber
+
 filetype off                  " required
 
 
@@ -11,8 +14,14 @@ nnoremap <leader>n :NERDTreeToggle<CR>
 nnoremap <C-w>\ <C-w>v
 nnoremap <C-w>= <C-w>s
 
+" Move swap files
+set directory=$HOME/.vim/swapfiles//
+
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
+
+" Hide image files from dir listings
+set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.jpeg,*.png
 
 Plugin 'gmarik/Vundle.vim'
 
@@ -36,6 +45,11 @@ Plugin 'cohama/lexima.vim'
 
 Plugin 'NLKNguyen/papercolor-theme'
 
+" Interact with tmux from within vim
+Plugin 'benmills/vimux'
+
+" Fuzzy file finder
+Plugin 'ctrlpvim/ctrlp.vim'
 " Plugin 'pangloss/vim-javascript'
 
 " Plugin 'mhinz/vim-startify'
@@ -60,8 +74,6 @@ imap <right> <nop>
 
 set guifont=Monospace\ 12
 
-"let Vimphpcs_Standard='/home/eric/www/bandwidth-cms/phpcs.xml'
-let g:syntastic_php_phpcs_args='--standard=$HOME/www/bandwidth-cms/phpcs.xml'
 
 "
 " Syntastic, newb settings
@@ -76,7 +88,10 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_c_checkers=['phpcs']
 let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': ['php', 'javascript'], 'passive_filetypes': [] }
-let g:syntastic_javascript_jslint_conf = "--white --undef --nomen --regexp --plusplus --bitwise --newcap --sloppy --vars"
+let g:syntastic_javascript_checkers = ['jshint']
+
+"let Vimphpcs_Standard='/home/eric/www/bandwidth-cms/phpcs.xml'
+let g:syntastic_php_phpcs_args='--standard=$HOME/www/bandwidth-cms/phpcs.xml'
 
 autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 
