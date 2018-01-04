@@ -115,5 +115,8 @@ fi
 
 set -o vi
 
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
+alias mux='tmuxinator'
+
+export EDITOR='vim'
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

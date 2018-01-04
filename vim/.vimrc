@@ -9,6 +9,7 @@ set autochdir
 set tags=tags;
 
 filetype off                  " required
+syntax enable
 
 filetype plugin on
 set omnifunc=syntaxcomplete#Complete
@@ -24,8 +25,8 @@ nnoremap <C-w>= <C-w>s
 " Remap esc
 imap jk <Esc>
 
-" Move swap files
-set directory=$HOME/.vim/swapfiles//
+" enable fzf
+set rtp+=~/.fzf
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -61,25 +62,14 @@ Plugin 'NLKNguyen/papercolor-theme'
 " Interact with tmux from within vim
 Plugin 'benmills/vimux'
 
-" Fuzzy file finder
-Plugin 'ctrlpvim/ctrlp.vim'
-
 " Intellisense or whatever. Autocomplete-y stuff
 Plugin 'Valloric/YouCompleteMe'
 
-" Typescript syntax highlighting and indentation
-Plugin 'leafgarland/typescript-vim'
-
-" Plugin 'pangloss/vim-javascript'
-
-" Plugin 'mhinz/vim-startify'
-
-" Plugin 'godlygeek/csapprox'
-
-" Plugin 'bpearson/vim-phpcs'
-"
 " Track the engine.
 Plugin 'SirVer/ultisnips'
+
+" Purescript fancies
+Plugin 'purescript-contrib/purescript-vim'
 "
 " " Snippets are separated from the engine. Add this if you want them:
 " Plugin 'honza/vim-snippets'
@@ -92,7 +82,7 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
-filetype plugin indent on
+filetype on
 
 noremap <Up> <NOP>
 noremap <Down> <NOP>
@@ -124,15 +114,21 @@ let g:syntastic_error_symbol = '❌'
 let g:syntastic_style_error_symbol = '⁉️'
 let g:syntastic_warning_symbol = '⚠️'
 let g:syntastic_style_warning_symbol = '💩'
-let g:syntastic_typescript_tslint_args = "./*"
 let g:syntastic_javascript_eslint_args = "--no-eslintrc --config /home/eric/.eslintrc"
 highlight link SyntasticErrorSign SignColumn
 highlight link SyntasticWarningSign SignColumn
 highlight link SyntasticStyleErrorSign SignColumn
 highlight link SyntasticStyleWarningSign SignColumn
 
-let g:typescript_compiler_binary = 'tsc'
-let g:typescript_compiler_options = ''
+"
+" Purescript config
+let purescript_indent_if = 3
+let purescript_indexnt_case = 5
+let purescript_indent_let = 4
+let purescript_indent_where = 6
+let purescript_indent_do = 3
+let purescript_indent_in = 1
+let purescript_invent_dot = v:true
 
 " IMPORTANT: Uncomment one of the following lines to force
 " " using 256 colors (or 88 colors) if your terminal supports it,
@@ -142,10 +138,10 @@ set t_Co=256
 let g:CSApprox_attr_map = { 'bold' : 'bold', 'italic' : '', 'sp' : '' }
 
 set background=light
+" set background=dark
 colorscheme PaperColor
 " colorscheme pyte
 " colorscheme solarized
-syntax enable
 
 set viminfo='100,n$HOME/.vim/files/info/viminfo
 set tags=tags;/
@@ -167,8 +163,9 @@ endfunction
 " Highlight currently open buffer in NERDTree
 autocmd BufEnter * call s:syncTree()
 
-" Force typescript filetype for ts extension
-autocmd BufNewFile,BufRead *.ts setlocal filetype=typescript
+" Force purescript filetype for ts extension
+autocmd BufNewFile,BufRead *.purs setlocal filetype=purescript
+
 
 " Saved macros
 let @c = "yyp^f(lysiw'li^^^ jk"
