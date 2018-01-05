@@ -28,48 +28,44 @@ imap jk <Esc>
 " enable fzf
 set rtp+=~/.fzf
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
+call plug#begin('~/.vim/plugged')
 " Hide image files from dir listings
 set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.jpeg,*.png
 
-Plugin 'gmarik/Vundle.vim'
-
 " Git stuff
-Plugin 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 
 " Linter etc
-Plugin 'scrooloose/syntastic'
+Plug 'scrooloose/syntastic'
 
 " Inserting of blank lines from normal mode etc
-Plugin 'tpope/vim-unimpaired'
+Plug 'tpope/vim-unimpaired'
 
 " Async compiler etc execution
-Plugin 'tpope/vim-dispatch'
+Plug 'tpope/vim-dispatch'
 
 " Wrapping words in quotes, tags, etc
-Plugin 'tpope/vim-surround.git'
+Plug 'tpope/vim-surround'
 
 " File tray
-Plugin 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree'
 
 " Auto closing of quotes and parents
-Plugin 'cohama/lexima.vim'
+Plug 'cohama/lexima.vim'
 
-Plugin 'NLKNguyen/papercolor-theme'
+Plug 'NLKNguyen/papercolor-theme'
 
 " Interact with tmux from within vim
-Plugin 'benmills/vimux'
+Plug 'benmills/vimux'
 
 " Intellisense or whatever. Autocomplete-y stuff
-Plugin 'Valloric/YouCompleteMe'
+Plug 'Valloric/YouCompleteMe'
 
 " Track the engine.
-Plugin 'SirVer/ultisnips'
+Plug 'SirVer/ultisnips'
 
 " Purescript fancies
-Plugin 'purescript-contrib/purescript-vim'
+Plug 'purescript-contrib/purescript-vim'
 "
 " " Snippets are separated from the engine. Add this if you want them:
 " Plugin 'honza/vim-snippets'
@@ -81,7 +77,7 @@ let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 " All of your Plugins must be added before the following line
-call vundle#end()            " required
+call plug#end()
 filetype on
 
 noremap <Up> <NOP>
