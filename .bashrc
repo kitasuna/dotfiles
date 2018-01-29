@@ -116,7 +116,7 @@ fi
 set -o vi
 
 alias mux='tmuxinator'
-
+alias esc='es-ctags -R --exclude=.git --exclude=node_modules .'
 export EDITOR='vim'
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
