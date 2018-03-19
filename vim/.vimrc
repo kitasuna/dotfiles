@@ -5,7 +5,6 @@ set relativenumber
 set noswapfile
 set colorcolumn=78
 
-set autochdir
 set tags=tags;
 
 filetype off                  " required
@@ -16,7 +15,8 @@ set omnifunc=syntaxcomplete#Complete
 
 let mapleader=","
 nnoremap <leader>t :tabe %:p:h<CR>
-nnoremap <leader>n :NERDTreeToggle<CR>
+nnoremap <leader>f :GFiles<CR>
+nnoremap <leader>b :Buff<CR>
 
 " Nicer window splitting
 nnoremap <C-w>\ <C-w>v
@@ -31,6 +31,10 @@ set rtp+=~/.fzf
 call plug#begin('~/.vim/plugged')
 " Hide image files from dir listings
 set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.jpeg,*.png
+
+" FZF commands
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim'
 
 " Git stuff
 Plug 'tpope/vim-fugitive'
@@ -59,13 +63,23 @@ Plug 'NLKNguyen/papercolor-theme'
 Plug 'benmills/vimux'
 
 " Intellisense or whatever. Autocomplete-y stuff
-Plug 'Valloric/YouCompleteMe'
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 
 " Track the engine.
 Plug 'SirVer/ultisnips'
 
 " Purescript fancies
 Plug 'purescript-contrib/purescript-vim'
+
+" YAML folding (argh Swagger)
+Plug 'digitalrounin/vim-yaml-folds', { 'for': 'yaml' }
+
+" Syntax highlighting etc
+Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
+
+" TS Autocomplete
+Plug 'Quramy/tsuquyomi', { 'for': 'typescript' }
+
 "
 " " Snippets are separated from the engine. Add this if you want them:
 " Plugin 'honza/vim-snippets'
@@ -115,6 +129,14 @@ highlight link SyntasticErrorSign SignColumn
 highlight link SyntasticWarningSign SignColumn
 highlight link SyntasticStyleErrorSign SignColumn
 highlight link SyntasticStyleWarningSign SignColumn
+
+" Typescript syntax plug has crap indentation rules
+let g:typescript_indent_disable = 1
+
+" Try to get TS tooltips working
+" set ballooneval
+" autocmd FileType typescript setlocal balloonexpr=tsuquyomi#balloonexpr()
+autocmd FileType typescript nmap <buffer> <leader>i : <C-u>echo tsuquyomi#hint()<CR>
 
 "
 " Purescript config
