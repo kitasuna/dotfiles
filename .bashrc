@@ -89,6 +89,10 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
+# yay more aliases
+alias mux='tmuxinator'
+alias esc='es-ctags -R --exclude=.git --exclude=node_modules .'
+
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
@@ -115,8 +119,8 @@ fi
 
 set -o vi
 
-alias mux='tmuxinator'
-alias esc='es-ctags -R --exclude=.git --exclude=node_modules .'
 export EDITOR='vim'
 
+# Add stack stuff to path
+export PATH=$PATH:$HOME/.stack/programs/x86_64-linux/ghc-8.2.2/bin
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
