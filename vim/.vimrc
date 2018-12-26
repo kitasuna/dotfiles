@@ -17,6 +17,7 @@ let mapleader=","
 nnoremap <leader>t :tabe %:p:h<CR>
 nnoremap <leader>f :GFiles<CR>
 nnoremap <leader>b :Buff<CR>
+nnoremap <leader>q :TsuImport<CR>
 
 " Nicer window splitting
 nnoremap <C-w>\ <C-w>v
@@ -38,6 +39,9 @@ Plug 'junegunn/fzf.vim'
 
 " Git stuff
 Plug 'tpope/vim-fugitive'
+
+" Sweet sweet repeat
+Plug 'tpope/vim-repeat'
 
 " Linter etc
 Plug 'scrooloose/syntastic'
@@ -98,6 +102,7 @@ noremap <Up> <NOP>
 noremap <Down> <NOP>
 noremap <Left> <NOP>
 noremap <Right> <NOP>
+
 
 imap <up> <nop>
 imap <down> <nop>
