@@ -123,4 +123,8 @@ export EDITOR='vim'
 
 # Add stack stuff to path
 export PATH=$PATH:$HOME/.stack/programs/x86_64-linux/ghc-8.2.2/bin
+
+# Add purs to path
+export PATH="$HOME/.npm/bin:$PATH"
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+. $HOME/.ghcup/env

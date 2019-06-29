@@ -8,7 +8,7 @@ set colorcolumn=78
 set tags=tags;
 
 filetype off                  " required
-syntax enable
+syntax on
 
 filetype plugin on
 set omnifunc=syntaxcomplete#Complete
@@ -17,7 +17,6 @@ let mapleader=","
 nnoremap <leader>t :tabe %:p:h<CR>
 nnoremap <leader>f :GFiles<CR>
 nnoremap <leader>b :Buff<CR>
-nnoremap <leader>q :TsuImport<CR>
 
 " Nicer window splitting
 nnoremap <C-w>\ <C-w>v
@@ -43,9 +42,6 @@ Plug 'tpope/vim-fugitive'
 " Sweet sweet repeat
 Plug 'tpope/vim-repeat'
 
-" Linter etc
-Plug 'scrooloose/syntastic'
-
 " Inserting of blank lines from normal mode etc
 Plug 'tpope/vim-unimpaired'
 
@@ -55,11 +51,11 @@ Plug 'tpope/vim-dispatch'
 " Wrapping words in quotes, tags, etc
 Plug 'tpope/vim-surround'
 
+" Several things, but used for snake <-> camel case conversion
+Plug 'tpope/vim-abolish'
+
 " File tray
 Plug 'scrooloose/nerdtree'
-
-" Auto closing of quotes and parents
-Plug 'cohama/lexima.vim'
 
 Plug 'NLKNguyen/papercolor-theme'
 
@@ -68,9 +64,6 @@ Plug 'benmills/vimux'
 
 " Intellisense or whatever. Autocomplete-y stuff
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
-
-" Track the engine.
-Plug 'SirVer/ultisnips'
 
 " Purescript fancies
 Plug 'purescript-contrib/purescript-vim'
@@ -84,15 +77,17 @@ Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
 " TS Autocomplete
 Plug 'Quramy/tsuquyomi', { 'for': 'typescript' }
 
-"
-" " Snippets are separated from the engine. Add this if you want them:
-" Plugin 'honza/vim-snippets'
-"
-" " Trigger configuration. Do not use <tab> if you use
-" https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<c-e>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+Plug 'prettier/vim-prettier', {
+  \ 'do': 'npm install',
+  \ 'for': ['javascript', 'typescript', 'json'] }
+
+Plug 'idris-hackers/idris-vim'
+
+" Haskell stuff
+Plug 'bitc/vim-hdevtools'
+
+" Trying new linting engine thing
+Plug 'w0rp/ale'
 
 " All of your Plugins must be added before the following line
 call plug#end()
@@ -112,46 +107,10 @@ imap <right> <nop>
 set guifont=Monospace\ 12
 
 
-"
-" Syntastic, newb settings
-"
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_loc_list_height = 5
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 1
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_typescript_checkers = ['tslint']
-let g:syntastic_error_symbol = '❌'
-let g:syntastic_style_error_symbol = '⁉️'
-let g:syntastic_warning_symbol = '⚠️'
-let g:syntastic_style_warning_symbol = '💩'
-let g:syntastic_javascript_eslint_args = "--no-eslintrc --config /home/eric/.eslintrc"
-highlight link SyntasticErrorSign SignColumn
-highlight link SyntasticWarningSign SignColumn
-highlight link SyntasticStyleErrorSign SignColumn
-highlight link SyntasticStyleWarningSign SignColumn
+filetype plugin indent on
 
-" Typescript syntax plug has crap indentation rules
-let g:typescript_indent_disable = 1
-
-" Try to get TS tooltips working
-" set ballooneval
-" autocmd FileType typescript setlocal balloonexpr=tsuquyomi#balloonexpr()
-autocmd FileType typescript nmap <buffer> <leader>i : <C-u>echo tsuquyomi#hint()<CR>
-
-"
-" Purescript config
-let purescript_indent_if = 3
-let purescript_indexnt_case = 5
-let purescript_indent_let = 4
-let purescript_indent_where = 6
-let purescript_indent_do = 3
-let purescript_indent_in = 1
-let purescript_invent_dot = v:true
+" Enable hdevtools
+let g:hdevtools_stack = 1
 
 " IMPORTANT: Uncomment one of the following lines to force
 " " using 256 colors (or 88 colors) if your terminal supports it,
