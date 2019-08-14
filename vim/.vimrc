@@ -14,7 +14,7 @@ filetype plugin on
 set omnifunc=syntaxcomplete#Complete
 
 let mapleader=","
-nnoremap <leader>t :tabe %:p:h<CR>
+nnoremap <leader>p :tabe %:p:h<CR>
 nnoremap <leader>f :GFiles<CR>
 nnoremap <leader>b :Buff<CR>
 
