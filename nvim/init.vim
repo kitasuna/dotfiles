@@ -3,6 +3,7 @@ Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'w0rp/ale'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'scrooloose/nerdtree'
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
@@ -15,6 +16,7 @@ call plug#end()
 
 set number
 set relativenumber
+set noswapfile
 
 " Mappings
 imap jk <Esc>
