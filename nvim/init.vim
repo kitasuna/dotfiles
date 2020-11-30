@@ -3,19 +3,23 @@ Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-abolish'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'scrooloose/nerdtree'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 " TS
 Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
-" Hask
+" Haskell
 Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
 Plug 'alx741/vim-hindent', { 'for': 'haskell' }
 " GoLang related
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 " GQL Syntax highlighting
 Plug 'jparise/vim-graphql'
+" Terraform highlighting
+Plug 'hashivim/vim-terraform'
 call plug#end()
 
 set number
@@ -25,13 +29,15 @@ set noswapfile
 " Mappings
 imap jk <Esc>
 
+set ttimeoutlen=10
+
 let mapleader=","
 
 nnoremap <leader>p :tabe %:p:h<CR>
 nnoremap <leader>f :GFiles<CR>
 nnoremap <leader>b :Buff<CR>
 
-" Stealing config from coc example
+" Coc.vim (LSP-related) config
 set hidden
 set cmdheight=2
 set updatetime=300
