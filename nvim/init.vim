@@ -80,5 +80,6 @@ nmap <leader>rn <Plug>(coc-rename)
 syntax enable
 colorscheme PaperColor
 set background=dark
+filetype plugin indent on
 
 set rtp+=~/.fzf
