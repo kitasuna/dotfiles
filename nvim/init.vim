@@ -14,8 +14,6 @@ Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
 " Haskell
 Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
 Plug 'alx741/vim-hindent', { 'for': 'haskell' }
-" GoLang related
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 " GQL Syntax highlighting
 Plug 'jparise/vim-graphql'
 " Terraform highlighting
