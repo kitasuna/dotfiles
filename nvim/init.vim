@@ -9,8 +9,7 @@ Plug 'NLKNguyen/papercolor-theme'
 Plug 'scrooloose/nerdtree'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
-" TS
-Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
+Plug 'preservim/vimux'
 " Haskell
 Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
 Plug 'alx741/vim-hindent', { 'for': 'haskell' }
@@ -74,6 +73,13 @@ endfunction
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
 " End Coc example config
+
+" Vimux
+let g:VimuxOrientation = "h"
+let g:VimuxHeight = "40"
+map <leader>vp :VimuxPromptCommand<cr>
+map <leader>vr :VimuxRunLastCommand<cr>
+map <leader>vq :VimuxCloseRunner<cr>
 
 syntax enable
 colorscheme PaperColor
