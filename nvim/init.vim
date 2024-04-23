@@ -9,10 +9,11 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-abolish'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'scrooloose/nerdtree'
-" Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/nvim-cmp'
+" For managing LSPs, linters, etc
+Plug 'williamboman/mason.nvim'
 " Snippets
 Plug 'L3MON4D3/LuaSnip', {'tag': 'v2.*', 'do': 'make install_jsregexp'}
 Plug 'rafamadriz/friendly-snippets'
@@ -24,7 +25,7 @@ Plug 'preservim/vimux'
 Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
 Plug 'alx741/vim-hindent', { 'for': 'haskell' }
 " Rust
-Plug 'rust-lang/rust.vim'
+Plug 'simrat39/rust-tools.nvim'
 " GQL Syntax highlighting
 Plug 'jparise/vim-graphql'
 " Terraform highlighting
@@ -33,6 +34,10 @@ Plug 'hashivim/vim-terraform'
 Plug 'pedrohdz/vim-yaml-folds'
 " Lots of highlighting
 Plug 'sheerun/vim-polyglot'
+" Copilot, hopefully
+Plug 'github/copilot.vim'
+" TreeSitter
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 call plug#end()
 
 " Tell Neovim to use lua filetype detection (filetype.lua)
@@ -104,7 +109,6 @@ filetype plugin indent on
 
 lua << EOF
 require'lspconfig'.gopls.setup{}
-
 require("luasnip.loaders.from_vscode").lazy_load()
 
 local cmp = require'cmp'
@@ -129,9 +133,24 @@ cmp.setup({
     })
 })
 
+-- Mason Setup
+require("mason").setup({
+    ui = {
+        icons = {
+            package_installed = "+",
+            package_pending = "",
+            package_uninstalled = "",
+        },
+    }
+})
+
 -- Set up each LSP
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
-require'lspconfig'.gopls.setup {
+local lspc = require('lspconfig')
+lspc.gopls.setup {
+  capabilities = capabilities
+}
+lspc.rust_analyzer.setup {
   capabilities = capabilities
 }
 EOF
@@ -145,6 +164,7 @@ nnoremap <silent> gR <cmd>lua vim.lsp.buf.rename()<CR>
 nnoremap <silent> ga <cmd>lua vim.lsp.buf.code_action()<CR>
 nnoremap <silent> ]d <cmd>lua vim.diagnostic.goto_next()<CR>
 nnoremap <silent> [d <cmd>lua vim.diagnostic.goto_prev()<CR>
+nnoremap <silent> ?d <cmd>lua vim.diagnostic.open_float()<CR>
 " Kind of LSP config, close the quickfix window
 nnoremap <silent> gh :cclose<CR>
 
